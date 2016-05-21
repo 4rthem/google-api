@@ -49,44 +49,23 @@ abstract class Client implements LoggerAwareInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function setLogger(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-
-        return $this;
-    }
-
-    /**
      * @param string $method
      * @param string $uri
      * @param array  $parameters
      * @param array  $options
      *
      * @return array
+     *
+     * @throws ClientErrorException
      */
     public function request($method, $uri, array $parameters = [], array $options = [])
     {
         $parameters['key'] = $this->apiKey;
-
         $options['query'] = $parameters;
 
         $uri = $this->apiUrl.$uri.'/json';
 
-        if (null !== $this->logger) {
-            $this->logger->info(
-                sprintf(
-                    'google api client: %s %s [%s]',
-                    $method,
-                    $uri,
-                    http_build_query(
-                        $options['query']
-                    )
-                )
-            );
-        }
-
+        $this->log($method, $uri, $options);
         $response = $this->httpClient->request($method, $uri, $options);
 
         $result = $this->decoder->decode($response);
@@ -96,5 +75,40 @@ abstract class Client implements LoggerAwareInterface
         }
 
         return $result;
+    }
+
+    /**
+     * @param string $method
+     * @param string $uri
+     * @param array  $options
+     */
+    private function log($method, $uri, array $options = [])
+    {
+        if (null === $this->logger) {
+            return;
+        }
+
+        $this->logger->info(
+            sprintf(
+                'google-api request: %s %s',
+                $method,
+                $uri
+            ),
+            [
+                'params' => http_build_query(
+                    $options['query']
+                ),
+            ]
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+
+        return $this;
     }
 }

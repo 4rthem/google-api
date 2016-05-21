@@ -12,7 +12,7 @@ class Radius
     private $radius;
 
     /**
-     * @param float $radius
+     * @param int|float $radius
      */
     public function __construct($radius)
     {
@@ -24,7 +24,7 @@ class Radius
                 )
             );
         }
-        $this->radius = $radius;
+        $this->radius = (float) $radius;
     }
 
     /**

@@ -24,8 +24,6 @@ class NearbySearchHandler extends AbstractHandler
             $params['name'] = $query->getName();
         }
 
-        $response = $this->client->nearbysearch($params);
-
-        return $this->hydratePlacesFromResponse($response);
+        return $this->client->nearbysearch($params);
     }
 }

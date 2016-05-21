@@ -24,17 +24,17 @@ class NearbySearchQuery
     private $name;
 
     /**
-     * @param float  $latitude
-     * @param float  $longitude
-     * @param float  $radius
-     * @param string $name
+     * @param float       $latitude
+     * @param float       $longitude
+     * @param int|float   $radius
+     * @param string|null $name
      */
     public function __construct($latitude, $longitude, $radius, $name = null)
     {
         $this->location = new Location($latitude, $longitude);
         $this->radius = new Radius($radius);
 
-        if ($name) {
+        if (!empty($name)) {
             $this->name = new PlaceName($name);
         }
     }

@@ -4,6 +4,7 @@ namespace Arthem\GoogleApi\Domain\Place\Query\Place;
 
 use Arthem\GoogleApi\Domain\Place\Place;
 use Arthem\GoogleApi\Domain\Place\Query\AbstractHandler;
+use Arthem\GooglePlaces\Domain\Place\Exception\PlaceNotFoundException;
 
 class PlaceDetailsHandler extends AbstractHandler
 {
@@ -11,6 +12,8 @@ class PlaceDetailsHandler extends AbstractHandler
      * @param PlaceDetailsQuery $query
      *
      * @return Place
+     *
+     * @throws PlaceNotFoundException
      */
     public function handle(PlaceDetailsQuery $query)
     {
@@ -18,8 +21,6 @@ class PlaceDetailsHandler extends AbstractHandler
             'placeid' => $query->getId()->getId(),
         ];
 
-        $response = $this->client->details($params);
-
-        return $this->hydratePlaceFromResponse($response);
+        return $this->client->details($params);
     }
 }
