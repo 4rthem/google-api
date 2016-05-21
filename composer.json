@@ -1,0 +1,34 @@
+{
+    "name": "arthem/google-api",
+    "description": "PHP Domain designed for Google APIs",
+    "type": "library",
+    "keywords": [
+        "google",
+        "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arthur de Moulins",
+            "email": "arthurdemoulins@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "^6.2.0",
+        "psr/log": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arthem\\GoogleApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Arthem\\GooglePlaces\\Test\\": "tests/"
+        }
+    }
+}
