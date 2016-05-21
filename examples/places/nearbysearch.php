@@ -20,7 +20,7 @@ $serializer = new PlaceSerializer();
 
 $query = new NearbySearchQuery(2.334922, 48.866112, 1000);
 
-$places = (new NearbySearchHandler($client, new PlaceHydrator()))->handle($query);
+$places = (new NearbySearchHandler($client))->handle($query);
 
 /** @var Place $place */
 foreach ($places as $place) {
