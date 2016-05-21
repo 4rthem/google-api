@@ -5,11 +5,11 @@ namespace Arthem\GoogleApi\Example;
 use Arthem\GoogleApi\Domain\Place\Place;
 use Arthem\GoogleApi\Domain\Place\Query\Search\NearbySearchHandler;
 use Arthem\GoogleApi\Domain\Place\Query\Search\NearbySearchQuery;
-use Arthem\GoogleApi\Domain\Place\Serializer\PlaceSerializer;
 use Arthem\GoogleApi\Infrastructure\Client\Decoder\JsonDecoder;
 use Arthem\GoogleApi\Infrastructure\Logger\EchoLogger;
 use Arthem\GoogleApi\Infrastructure\Place\Hydrator\PlaceHydrator;
 use Arthem\GoogleApi\Infrastructure\Place\PlaceClient;
+use Arthem\GoogleApi\Infrastructure\Place\Serializer\PlaceSerializer;
 use GuzzleHttp\Client;
 
 require_once __DIR__.'/../../vendor/autoload.php';

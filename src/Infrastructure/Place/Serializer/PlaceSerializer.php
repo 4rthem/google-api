@@ -1,6 +1,6 @@
 <?php
 
-namespace Arthem\GoogleApi\Domain\Place\Serializer;
+namespace Arthem\GoogleApi\Infrastructure\Place\Serializer;
 
 use Arthem\GoogleApi\Domain\Place\Place;
 use Arthem\GoogleApi\Domain\Place\VO\Type;
@@ -39,7 +39,7 @@ class PlaceSerializer
     private function setId(Place $place, array &$data)
     {
         if (null !== $place->getId()) {
-            $data['id'] = $place->getId()->getId();
+            $data['place_id'] = $place->getId()->getId();
         }
     }
 
@@ -61,7 +61,19 @@ class PlaceSerializer
     private function setLocation(Place $place, array &$data)
     {
         if (null !== $place->getLocation()) {
-            $data['location'] = $place->getLocation();
+            $this->createGeometryNode($data);
+
+            $data['geometry']['location'] = [
+                'lat' => $place->getLocation()->getLatitude(),
+                'lng' => $place->getLocation()->getLongitude(),
+            ];
+        }
+    }
+
+    private function createGeometryNode(array &$data)
+    {
+        if (!isset($data['geometry'])) {
+            $data['geometry'] = [];
         }
     }
 

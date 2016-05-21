@@ -1,9 +1,8 @@
 <?php
 
-namespace Arthem\GoogleApi\Test\Place\Serializer;
+namespace Arthem\GooglePlaces\Test\Utils;
 
 use Arthem\GoogleApi\Domain\Place\Place;
-use Arthem\GoogleApi\Domain\Place\Serializer\PlaceSerializer;
 use Arthem\GoogleApi\Domain\Place\VO\FormattedAddress;
 use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
@@ -17,22 +16,12 @@ use Arthem\GoogleApi\Domain\Place\VO\Url;
 use Arthem\GoogleApi\Domain\Place\VO\Vicinity;
 use Arthem\GoogleApi\Domain\Place\VO\Website;
 
-class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
+class PlaceData
 {
     /**
-     * @param array $expectedData
-     * @param Place $place
-     * @dataProvider getPlacesData
+     * @return array
      */
-    public function testSerialize(array $expectedData, Place $place)
-    {
-        $serializer = new PlaceSerializer();
-        $data = $serializer->serialize($place);
-
-        $this->assertEquals($expectedData, $data);
-    }
-
-    public function getPlacesData()
+    public static function getPlaceProvider()
     {
         $data = [];
 
@@ -45,9 +34,14 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
         ];
 
         $data[] = [
+            [],
+            new Place(),
+        ];
+
+        $data[] = [
             [
-                'id' => 'foo-bar_123',
-                'name' => 'bar',
+                'place_id' => 'foo-bar_123',
+                'name'     => 'bar',
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))
@@ -56,9 +50,9 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
 
         $data[] = [
             [
-                'id' => 'foo-bar_123',
-                'name' => 'baz',
-                'types' => ['point_of_interest', 'school'],
+                'place_id' => 'foo-bar_123',
+                'name'     => 'baz',
+                'types'    => ['point_of_interest', 'school'],
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))
@@ -75,17 +69,22 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
 
         $data[] = [
             [
-                'id' => 'foo-bar_123',
-                'name' => 'baz',
-                'types' => ['point_of_interest', 'school'],
-                'location' => '12.3,45.6',
-                'icon' => 'http://my-domain.com/my-icon.gif',
-                'vicinity' => 'My vicinity',
-                'formatted_address' => 'My formatted address',
-                'formatted_phone_number' => 'My formatted phone number',
+                'place_id'                   => 'foo-bar_123',
+                'name'                       => 'baz',
+                'types'                      => ['point_of_interest', 'school'],
+                'geometry'                   => [
+                    'location' => [
+                        'lat' => 12.3,
+                        'lng' => 45.6,
+                    ],
+                ],
+                'icon'                       => 'http://my-domain.com/my-icon.gif',
+                'vicinity'                   => 'My vicinity',
+                'formatted_address'          => 'My formatted address',
+                'formatted_phone_number'     => 'My formatted phone number',
                 'international_phone_number' => 'My international phone number',
-                'url' => 'http://my-domain.com/my-url',
-                'website' => 'http://my-domain.com/my-website',
+                'url'                        => 'http://my-domain.com/my-url',
+                'website'                    => 'http://my-domain.com/my-website',
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))
