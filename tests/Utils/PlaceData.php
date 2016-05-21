@@ -41,7 +41,7 @@ class PlaceData
         $data[] = [
             [
                 'place_id' => 'foo-bar_123',
-                'name'     => 'bar',
+                'name' => 'bar',
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))
@@ -51,8 +51,8 @@ class PlaceData
         $data[] = [
             [
                 'place_id' => 'foo-bar_123',
-                'name'     => 'baz',
-                'types'    => ['point_of_interest', 'school'],
+                'name' => 'baz',
+                'types' => ['point_of_interest', 'school'],
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))
@@ -69,22 +69,22 @@ class PlaceData
 
         $data[] = [
             [
-                'place_id'                   => 'foo-bar_123',
-                'name'                       => 'baz',
-                'types'                      => ['point_of_interest', 'school'],
-                'geometry'                   => [
+                'place_id' => 'foo-bar_123',
+                'name' => 'baz',
+                'types' => ['point_of_interest', 'school'],
+                'geometry' => [
                     'location' => [
                         'lat' => 12.3,
                         'lng' => 45.6,
                     ],
                 ],
-                'icon'                       => 'http://my-domain.com/my-icon.gif',
-                'vicinity'                   => 'My vicinity',
-                'formatted_address'          => 'My formatted address',
-                'formatted_phone_number'     => 'My formatted phone number',
+                'icon' => 'http://my-domain.com/my-icon.gif',
+                'vicinity' => 'My vicinity',
+                'formatted_address' => 'My formatted address',
+                'formatted_phone_number' => 'My formatted phone number',
                 'international_phone_number' => 'My international phone number',
-                'url'                        => 'http://my-domain.com/my-url',
-                'website'                    => 'http://my-domain.com/my-website',
+                'url' => 'http://my-domain.com/my-url',
+                'website' => 'http://my-domain.com/my-website',
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))

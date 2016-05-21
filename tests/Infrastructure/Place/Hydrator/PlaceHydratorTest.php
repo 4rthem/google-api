@@ -16,7 +16,7 @@ class PlaceHydratorTest extends \PHPUnit_Framework_TestCase
     public function testHydrate(array $data, Place $expectedPlace)
     {
         $hydrator = new PlaceHydrator();
-        $place      = $hydrator->hydratePlace($data);
+        $place = $hydrator->hydratePlace($data);
 
         $this->assertEquals($expectedPlace, $place);
     }

@@ -4,6 +4,7 @@ namespace Arthem\GoogleApi\Infrastructure\Place;
 
 use Arthem\GoogleApi\Domain\Place\Client\PlaceClientInterface;
 use Arthem\GoogleApi\Infrastructure\Client\Client;
+use Arthem\GoogleApi\Infrastructure\Client\Decoder\DecoderInterface;
 use Arthem\GoogleApi\Infrastructure\Place\Hydrator\PlaceHydrator;
 use Arthem\GooglePlaces\Domain\Place\Exception\PlaceNotFoundException;
 use GuzzleHttp\ClientInterface;
@@ -20,8 +21,12 @@ class PlaceClient extends Client implements PlaceClientInterface
      */
     private $placeHydrator;
 
-    public function __construct(ClientInterface $httpClient, $decoder, $apiKey, PlaceHydrator $placeHydrator)
-    {
+    public function __construct(
+        ClientInterface $httpClient,
+        DecoderInterface $decoder,
+        $apiKey,
+        PlaceHydrator $placeHydrator
+    ) {
         parent::__construct($httpClient, $decoder, $apiKey);
         $this->placeHydrator = $placeHydrator;
     }

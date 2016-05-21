@@ -38,10 +38,11 @@ abstract class Client implements LoggerAwareInterface
     private $logger;
 
     /**
-     * @param ClientInterface $httpClient
-     * @param string          $apiKey
+     * @param ClientInterface  $httpClient
+     * @param DecoderInterface $decoder
+     * @param string           $apiKey
      */
-    public function __construct(ClientInterface $httpClient, $decoder, $apiKey)
+    public function __construct(ClientInterface $httpClient, DecoderInterface $decoder, $apiKey)
     {
         $this->apiKey = $apiKey;
         $this->decoder = $decoder;
