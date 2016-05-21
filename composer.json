@@ -1,6 +1,6 @@
 {
     "name": "arthem/google-api",
-    "description": "PHP Domain designed for Google APIs",
+    "description": "PHP Domain designed Google APIs",
     "type": "library",
     "keywords": [
         "google",
