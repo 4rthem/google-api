@@ -27,7 +27,7 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
     public function testSerialize(array $expectedData, Place $place)
     {
         $serializer = new PlaceSerializer();
-        $data       = $serializer->serialize($place);
+        $data = $serializer->serialize($place);
 
         $this->assertEquals($expectedData, $data);
     }
@@ -46,7 +46,7 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
 
         $data[] = [
             [
-                'id'   => 'foo-bar_123',
+                'id' => 'foo-bar_123',
                 'name' => 'bar',
             ],
             (new Place())
@@ -56,8 +56,8 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
 
         $data[] = [
             [
-                'id'    => 'foo-bar_123',
-                'name'  => 'baz',
+                'id' => 'foo-bar_123',
+                'name' => 'baz',
                 'types' => ['point_of_interest', 'school'],
             ],
             (new Place())
@@ -75,17 +75,17 @@ class PlaceSerializerTest extends \PHPUnit_Framework_TestCase
 
         $data[] = [
             [
-                'id'                         => 'foo-bar_123',
-                'name'                       => 'baz',
-                'types'                      => ['point_of_interest', 'school'],
-                'location'                   => '12.3,45.6',
-                'icon'                       => 'http://my-domain.com/my-icon.gif',
-                'vicinity'                   => 'My vicinity',
-                'formatted_address'          => 'My formatted address',
-                'formatted_phone_number'     => 'My formatted phone number',
+                'id' => 'foo-bar_123',
+                'name' => 'baz',
+                'types' => ['point_of_interest', 'school'],
+                'location' => '12.3,45.6',
+                'icon' => 'http://my-domain.com/my-icon.gif',
+                'vicinity' => 'My vicinity',
+                'formatted_address' => 'My formatted address',
+                'formatted_phone_number' => 'My formatted phone number',
                 'international_phone_number' => 'My international phone number',
-                'url'                        => 'http://my-domain.com/my-url',
-                'website'                    => 'http://my-domain.com/my-website',
+                'url' => 'http://my-domain.com/my-url',
+                'website' => 'http://my-domain.com/my-website',
             ],
             (new Place())
                 ->setId(new PlaceId('foo-bar_123'))
