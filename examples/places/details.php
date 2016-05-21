@@ -14,7 +14,7 @@ use GuzzleHttp\Client;
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
-$client = new PlaceClient(new Client(), new JsonDecoder(), 'AIzaSyDtms0HAKybIq3LFVgf0AqN9zXXJ6QJO4c', new PlaceHydrator());
+$client = new PlaceClient(new Client(), new JsonDecoder(), 'YOUR_API_KEY_HERE', new PlaceHydrator());
 $client->setLogger(new EchoLogger());
 $serializer = new PlaceSerializer();
 
