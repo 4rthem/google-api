@@ -15,9 +15,9 @@ class NearbySearchHandler extends AbstractHandler
     public function handle(NearbySearchQuery $query)
     {
         $location = $query->getLocation();
-        $params = [
-            'location' => $location->getLongitude().','.$location->getLatitude(),
-            'radius' => $query->getRadius()->getRadius(),
+        $params   = [
+            'location' => $location->getLatitude().','.$location->getLongitude(),
+            'radius'   => $query->getRadius()->getRadius(),
         ];
 
         if (null !== $query->getName()) {

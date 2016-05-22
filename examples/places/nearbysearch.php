@@ -18,7 +18,7 @@ $client = new PlaceClient(new Client(), new JsonDecoder(), 'YOUR_API_KEY_HERE', 
 $client->setLogger(new EchoLogger());
 $serializer = new PlaceSerializer();
 
-$query = new NearbySearchQuery(2.334922, 48.866112, 1000);
+$query = new NearbySearchQuery(48.866112, 2.334922, 1000);
 
 $places = (new NearbySearchHandler($client))->handle($query);
 
