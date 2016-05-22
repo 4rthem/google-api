@@ -2,6 +2,7 @@
 
 namespace Arthem\GoogleApi\Domain\Place;
 
+use Arthem\GoogleApi\Domain\Place\VO\AddressComponentCollection;
 use Arthem\GoogleApi\Domain\Place\VO\FormattedAddress;
 use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
@@ -71,9 +72,15 @@ class Place
      */
     private $types;
 
+    /**
+     * @var AddressComponentCollection
+     */
+    private $addressComponents;
+
     public function __construct()
     {
         $this->types = new TypeCollection();
+        $this->addressComponents = new AddressComponentCollection();
     }
 
     /**
@@ -292,6 +299,26 @@ class Place
     public function setUrl(Url $url = null)
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * @return AddressComponentCollection
+     */
+    public function getAddressComponents()
+    {
+        return $this->addressComponents;
+    }
+
+    /**
+     * @param AddressComponentCollection $addressComponents
+     *
+     * @return $this
+     */
+    public function setAddressComponents(AddressComponentCollection $addressComponents)
+    {
+        $this->addressComponents = $addressComponents;
 
         return $this;
     }

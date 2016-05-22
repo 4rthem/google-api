@@ -4,7 +4,6 @@ namespace Arthem\GoogleApi\Example;
 
 use Arthem\GoogleApi\Domain\Place\Query\Place\PlaceDetailsHandler;
 use Arthem\GoogleApi\Domain\Place\Query\Place\PlaceDetailsQuery;
-use Arthem\GoogleApi\Domain\Place\VO\PlaceId;
 use Arthem\GoogleApi\Infrastructure\Client\Decoder\JsonDecoder;
 use Arthem\GoogleApi\Infrastructure\Logger\EchoLogger;
 use Arthem\GoogleApi\Infrastructure\Place\Hydrator\PlaceHydrator;

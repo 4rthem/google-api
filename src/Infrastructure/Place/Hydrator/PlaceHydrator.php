@@ -3,6 +3,7 @@
 namespace Arthem\GoogleApi\Infrastructure\Place\Hydrator;
 
 use Arthem\GoogleApi\Domain\Place\Place;
+use Arthem\GoogleApi\Domain\Place\VO\AddressComponent;
 use Arthem\GoogleApi\Domain\Place\VO\FormattedAddress;
 use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
@@ -69,6 +70,7 @@ class PlaceHydrator
         $this->setInternationalPhoneNumber($place, $data);
         $this->setUrl($place, $data);
         $this->setWebsite($place, $data);
+        $this->setAddressComponents($place, $data);
 
         return $place;
     }
@@ -119,6 +121,26 @@ class PlaceHydrator
                 $types[] = new Type($typeData);
             }
             $place->setTypes(new TypeCollection($types));
+        }
+    }
+
+    /**
+     * @param Place $place
+     * @param array $data
+     */
+    private function setAddressComponents(Place $place, array $data)
+    {
+        if (!empty($data['address_components'])) {
+            $components = $place->getAddressComponents();
+            foreach ($data['address_components'] as $componentData) {
+                $components->addComponent(
+                    new AddressComponent(
+                        $componentData['long_name'],
+                        $componentData['short_name'],
+                        $componentData['types']
+                    )
+                );
+            }
         }
     }
 
