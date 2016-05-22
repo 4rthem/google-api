@@ -18,7 +18,7 @@ $client = new PlaceClient(new Client(), new JsonDecoder(), 'YOUR_API_KEY_HERE', 
 $client->setLogger(new EchoLogger());
 $serializer = new PlaceSerializer();
 
-$query = new PlaceDetailsQuery(new PlaceId('ChIJN1t_tDeuEmsRUsoyG83frY4'));
+$query = new PlaceDetailsQuery('ChIJN1t_tDeuEmsRUsoyG83frY4');
 $place = (new PlaceDetailsHandler($client))->handle($query);
 
 print_r($serializer->serialize($place));
