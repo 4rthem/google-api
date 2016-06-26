@@ -18,6 +18,13 @@ interface PlaceClientInterface
     /**
      * @param array $params
      *
+     * @return PlaceCollection
+     */
+    public function textsearch(array $params);
+
+    /**
+     * @param array $params
+     *
      * @return Place
      *
      * @throws PlaceNotFoundException
