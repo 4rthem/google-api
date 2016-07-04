@@ -44,6 +44,16 @@ class PlaceClient extends Client implements PlaceClientInterface
     /**
      * {@inheritdoc}
      */
+    public function textsearch(array $params)
+    {
+        $response = $this->request('GET', '/textsearch', $params);
+
+        return $this->placeHydrator->hydratePlaces($response['results']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function details(array $params)
     {
         $response = $this->request('GET', '/details', $params);
