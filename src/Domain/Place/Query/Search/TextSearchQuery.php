@@ -28,7 +28,6 @@ class TextSearchQuery
      * @param float|null     $latitude
      * @param float|null     $longitude
      * @param int|float|null $radius
-     * @param string|null    $name
      */
     public function __construct($query, $latitude = null, $longitude = null, $radius = null)
     {
