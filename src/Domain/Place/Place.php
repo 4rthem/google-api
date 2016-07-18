@@ -8,6 +8,8 @@ use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
 use Arthem\GoogleApi\Domain\Place\VO\InternationalPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Location;
+use Arthem\GoogleApi\Domain\Place\VO\Photo;
+use Arthem\GoogleApi\Domain\Place\VO\PhotoCollection;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceId;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceName;
 use Arthem\GoogleApi\Domain\Place\VO\TypeCollection;
@@ -77,10 +79,16 @@ class Place
      */
     private $addressComponents;
 
+    /**
+     * @var PhotoCollection
+     */
+    private $photos;
+
     public function __construct()
     {
         $this->types = new TypeCollection();
         $this->addressComponents = new AddressComponentCollection();
+        $this->photos = new PhotoCollection();
     }
 
     /**
@@ -319,6 +327,26 @@ class Place
     public function setAddressComponents(AddressComponentCollection $addressComponents)
     {
         $this->addressComponents = $addressComponents;
+
+        return $this;
+    }
+
+    /**
+     * @return PhotoCollection|Photo[]
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @param PhotoCollection $photos
+     *
+     * @return $this
+     */
+    public function setPhotos(PhotoCollection $photos)
+    {
+        $this->photos = $photos;
 
         return $this;
     }

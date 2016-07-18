@@ -9,6 +9,7 @@ use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
 use Arthem\GoogleApi\Domain\Place\VO\InternationalPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Location;
+use Arthem\GoogleApi\Domain\Place\VO\Photo;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceCollection;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceId;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceName;
@@ -71,6 +72,7 @@ class PlaceHydrator
         $this->setUrl($place, $data);
         $this->setWebsite($place, $data);
         $this->setAddressComponents($place, $data);
+        $this->setPhotos($place, $data);
 
         return $place;
     }
@@ -130,17 +132,41 @@ class PlaceHydrator
      */
     private function setAddressComponents(Place $place, array $data)
     {
-        if (!empty($data['address_components'])) {
-            $components = $place->getAddressComponents();
-            foreach ($data['address_components'] as $componentData) {
-                $components->addComponent(
-                    new AddressComponent(
-                        $componentData['long_name'],
-                        $componentData['short_name'],
-                        $componentData['types']
-                    )
-                );
-            }
+        if (empty($data['address_components'])) {
+            return;
+        }
+
+        $components = $place->getAddressComponents();
+        foreach ($data['address_components'] as $componentData) {
+            $components->addComponent(
+                new AddressComponent(
+                    $componentData['long_name'],
+                    $componentData['short_name'],
+                    $componentData['types']
+                )
+            );
+        }
+    }
+
+    /**
+     * @param Place $place
+     * @param array $data
+     */
+    private function setPhotos(Place $place, array $data)
+    {
+        if (empty($data['photos'])) {
+            return;
+        }
+
+        $photos = $place->getPhotos();
+        foreach ($data['photos'] as $photoData) {
+            $photos->addPhoto(
+                new Photo(
+                    $photoData['photo_reference'],
+                    $photoData['width'],
+                    $photoData['height']
+                )
+            );
         }
     }
 
