@@ -299,8 +299,8 @@ class Type
     /**
      * @return array
      */
-    static public function getAvailableTypes()
+    public static function getAvailableTypes()
     {
-        return static::$availableTypes;
+        return self::$availableTypes;
     }
 }
