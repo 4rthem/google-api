@@ -295,4 +295,12 @@ class Type
     {
         return $this->type;
     }
+
+    /**
+     * @return array
+     */
+    public static function getAvailableTypes()
+    {
+        return self::$availableTypes;
+    }
 }

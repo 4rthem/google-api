@@ -17,11 +17,22 @@ class NearbySearchHandler extends AbstractHandler
         $location = $query->getLocation();
         $params = [
             'location' => $location->getLatitude().','.$location->getLongitude(),
-            'radius' => $query->getRadius()->getRadius(),
         ];
 
         if (null !== $query->getName()) {
             $params['name'] = $query->getName();
+        }
+
+        if (null !== $query->getRadius()) {
+            $params['radius'] = $query->getRadius()->getRadius();
+        }
+
+        if (null !== $rankBy = $query->getRankBy()) {
+            $params['rankby'] = $rankBy;
+        }
+
+        if (null !== $types = $query->getTypes()) {
+            $params['types'] = implode('|', $types);
         }
 
         return $this->client->nearbysearch($params);
