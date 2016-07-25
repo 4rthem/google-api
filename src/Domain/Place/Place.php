@@ -8,6 +8,7 @@ use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
 use Arthem\GoogleApi\Domain\Place\VO\InternationalPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Location;
+use Arthem\GoogleApi\Domain\Place\VO\OpeningHours;
 use Arthem\GoogleApi\Domain\Place\VO\Photo;
 use Arthem\GoogleApi\Domain\Place\VO\PhotoCollection;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceId;
@@ -43,6 +44,11 @@ class Place
      * @var FormattedPhoneNumber
      */
     private $formattedPhoneNumber;
+
+    /**
+     * @var OpeningHours
+     */
+    private $openingHours;
 
     /**
      * @var Icon
@@ -347,6 +353,25 @@ class Place
     public function setPhotos(PhotoCollection $photos)
     {
         $this->photos = $photos;
+
+        return $this;
+    }
+
+    /**
+     * @return OpeningHours
+     */
+    public function getOpeningHours()
+    {
+        return $this->openingHours;
+    }
+
+    /**
+     * @param OpeningHours $openingHours
+     * @return $this
+     */
+    public function setOpeningHours(OpeningHours $openingHours = null)
+    {
+        $this->openingHours = $openingHours;
 
         return $this;
     }
