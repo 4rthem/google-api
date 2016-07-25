@@ -9,6 +9,7 @@ use Arthem\GoogleApi\Domain\Place\VO\FormattedPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Icon;
 use Arthem\GoogleApi\Domain\Place\VO\InternationalPhoneNumber;
 use Arthem\GoogleApi\Domain\Place\VO\Location;
+use Arthem\GoogleApi\Domain\Place\VO\OpeningHours;
 use Arthem\GoogleApi\Domain\Place\VO\Photo;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceCollection;
 use Arthem\GoogleApi\Domain\Place\VO\PlaceId;
@@ -73,6 +74,7 @@ class PlaceHydrator
         $this->setWebsite($place, $data);
         $this->setAddressComponents($place, $data);
         $this->setPhotos($place, $data);
+        $this->setOpeningHours($place, $data);
 
         return $place;
     }
@@ -168,6 +170,21 @@ class PlaceHydrator
                 )
             );
         }
+    }
+
+    /**
+     * @param Place $place
+     * @param array $data
+     */
+    private function setOpeningHours(Place $place, array $data)
+    {
+        if (empty($data['opening_hours'])) {
+            return;
+        }
+
+        $weekdayText = $data['opening_hours']['weekday_text'];
+
+        $place->setOpeningHours(new OpeningHours($weekdayText));
     }
 
     /**
