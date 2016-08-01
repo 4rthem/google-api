@@ -71,7 +71,14 @@ abstract class Client implements LoggerAwareInterface
 
         $result = $this->decoder->decode($response);
 
-        if (isset($result['status']) && 'OK' !== $result['status']) {
+        if (!isset($result['status'])) {
+            throw new ClientErrorException('Missing return status');
+        }
+
+        if (!in_array($result['status'], [
+                'OK',
+                'ZERO_RESULTS',
+            ], true)) {
             throw new ClientErrorException(sprintf('Invalid return status "%s"', $result['status']));
         }
 
