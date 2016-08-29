@@ -22,19 +22,19 @@ class Location
      */
     public function __construct($latitude, $longitude)
     {
-        $this->assertFloat('latitude', $latitude);
-        $this->assertFloat('longitude', $longitude);
+        $this->assertNumeric('latitude', $latitude);
+        $this->assertNumeric('longitude', $longitude);
 
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
+        $this->latitude = (float) $latitude;
+        $this->longitude = (float) $longitude;
     }
 
-    private function assertFloat($type, $coordinate)
+    private function assertNumeric($type, $coordinate)
     {
-        if (!is_float($coordinate)) {
+        if (!is_float($coordinate) && !is_int($coordinate) && !is_double($coordinate)) {
             throw new InvalidCoordinateException(
                 sprintf(
-                    'Invalid %s: expected float, got %s',
+                    'Invalid %s: expected float, int or double, got %s',
                     $type,
                     gettype($coordinate)
                 )
