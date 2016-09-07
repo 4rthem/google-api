@@ -281,10 +281,6 @@ class Type
      */
     public function __construct($type)
     {
-        if (!in_array($type, self::$availableTypes, true)) {
-            throw new UnsupportedTypeException(sprintf('Type "%s" is not supported', $type));
-        }
-
         $this->type = $type;
     }
 
